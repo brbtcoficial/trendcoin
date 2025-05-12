@@ -9,7 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Mirror issue to private repo
-        uses: peter-evans/create-issue@v5
         with:
           token: ${{ secrets.PRIVATE_REPO_PAT }}
           repository: brbtcoficial/whitelabel-server
