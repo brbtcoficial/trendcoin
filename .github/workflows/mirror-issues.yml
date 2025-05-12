@@ -1,0 +1,25 @@
+name: Mirror Issues to Private Repo
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mirror issue to private repo
+        uses: peter-evans/create-issue@v5
+        with:
+          token: ${{ secrets.PRIVATE_REPO_PAT }}
+          repository: brbtcoficial/whitelabel-server
+          title: '[External] ${{ github.event.issue.title }}'
+          body: |
+            🔄 This issue was automatically created from a public issue in [brbtcoficial/trendcoin](https://github.com/brbtcoficial/trendcoin/issues/${{ github.event.issue.number }}).
+
+            ---
+            ### Original Description:
+            ${{ github.event.issue.body }}
+
+            ---
+            _Note: This is a mirrored issue for internal tracking._
